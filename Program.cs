@@ -14,7 +14,7 @@ builder.Services.AddAuthorization(options =>
     options.FallbackPolicy = options.DefaultPolicy;
 });
 
-// **Adiciona suporte para controladores (API)
+// Adiciona suporte para controladores (API)
 builder.Services.AddControllers(); // Adiciona suporte para APIs
 
 // Configuração de CORS (se necessário para o front-end se comunicar com o back-end)
@@ -31,6 +31,9 @@ builder.Services.AddCors(options =>
 // Adiciona o ApplicationDbContext com a string de conexão
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+
+// ** Registro do EmailService **
+builder.Services.AddScoped<EmailService>(); // Adiciona o EmailService ao contêiner de DI
 
 var app = builder.Build();
 
